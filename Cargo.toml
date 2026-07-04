@@ -1,1 +1,35 @@
+[package]
+name = "HackerOS-System-Monitor"
+version = "0.1.0"
+edition = "2021"
+description = "System monitor for Linux, inspired by Mission Center"
+license = "BSD-3"
 
+[dependencies]
+gtk = { package = "gtk4", version = "0.7", features = ["v4_10"] }
+glib = "0.18"
+sysinfo = "0.30"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
+
+[package.metadata.deb]
+maintainer = "Mission Monitor Maintainers <packaging@example.com>"
+copyright = "2026, Mission Monitor Maintainers"
+license-file = ["LICENSE", "0"]
+extended-description = """\
+Monitor Systemu is a native GTK4 system monitor for Linux, inspired by \
+Mission Center. It shows live CPU (overall + per-core), memory/swap, disk \
+capacity, network throughput, and a sortable/filterable process table."""
+section = "utils"
+priority = "optional"
+depends = "$auto, libgtk-4-1"
+assets = [
+    ["target/release/mission-monitor", "usr/bin/", "755"],
+    ["resources/mission-monitor.desktop", "usr/share/applications/", "644"],
+    ["resources/icons/mission-monitor.svg", "usr/share/icons/hicolor/scalable/apps/", "644"],
+]
