@@ -2,3 +2,6 @@
 // rustc
 
 > cargo build --release
+;; install mising dependeces
+;; > sudo apt install libgraphene-1.0-dev
+;; > sudo apt install libgtk-4-dev
